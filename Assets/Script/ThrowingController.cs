@@ -5,19 +5,30 @@ public class ThrowingController : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform throwPoint;
     public float arcHeight = 2f;
+    public LayerMask obstacleLayer; // ตั้ง Tag เสา แล้วกำหนด Layer นี้ใน Inspector
+    public float checkDistance = 1.5f; // ระยะตรวจเสา
+    public float arcHeightNearObstacle = 4f; // ความสูงพิเศษถ้าเจอเสา
 
-    public void ThrowProjectileAtTarget(Transform target)
-    {
-        GameObject projectile = Instantiate(projectilePrefab, throwPoint.position, Quaternion.identity);
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.gravityScale = 1f;
+    public void ThrowProjectileAtTarget(Transform target, Transform playerTransform)
+{
+    // ตรวจว่ามีเสาอยู่ด้านหน้าไหม
+    Vector2 checkDirection = playerTransform.localScale.x > 0 ? Vector2.right : Vector2.left;
+    RaycastHit2D hit = Physics2D.Raycast(playerTransform.position, checkDirection, checkDistance, obstacleLayer);
 
-        Vector2 start = throwPoint.position;
-        Vector2 end = target.position;
+    // ถ้าเจอเสา → ใช้ arc ที่สูงขึ้น
+    float selectedArcHeight = hit.collider != null ? arcHeightNearObstacle : arcHeight;
 
-        Vector2 velocity = CalculateArcVelocity(start, end, arcHeight);
-        rb.velocity = velocity;
-    }
+    // โยนหิน
+    GameObject projectile = Instantiate(projectilePrefab, throwPoint.position, Quaternion.identity);
+    Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+    rb.gravityScale = 1f;
+
+    Vector2 start = throwPoint.position;
+    Vector2 end = target.position;
+
+    Vector2 velocity = CalculateArcVelocity(start, end, selectedArcHeight);
+    rb.velocity = velocity;
+}
 
     // ฟิสิกส์การขว้างแบบโค้ง
     private Vector2 CalculateArcVelocity(Vector2 start, Vector2 end, float height)

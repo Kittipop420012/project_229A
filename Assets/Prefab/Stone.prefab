@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 9199317573529845913}
   - component: {fileID: 662116219021467041}
   - component: {fileID: 6456296393865988479}
+  - component: {fileID: -915447684153517991}
   m_Layer: 0
   m_Name: Stone
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,3 +153,15 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 3.585
+--- !u!114 &-915447684153517991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874471995613467624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1baf16f9f4452324c8ebf95f990acad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

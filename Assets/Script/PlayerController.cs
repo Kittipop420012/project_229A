@@ -20,15 +20,16 @@ public class PlayerController : MonoBehaviour
         moveX = (Input.GetKey(KeyCode.A) ? -1f : 0f) + (Input.GetKey(KeyCode.D) ? 1f : 0f);
         if (Input.GetKeyDown(KeyCode.W))
         {
-            throwingController.ThrowProjectileAtTarget(enemyTarget);
+        throwingController.ThrowProjectileAtTarget(enemyTarget, this.transform);
         }
+
     }
     else if (playerID == PlayerID.Player2)
     {
         moveX = (Input.GetKey(KeyCode.LeftArrow) ? -1f : 0f) + (Input.GetKey(KeyCode.RightArrow) ? 1f : 0f);
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            throwingController.ThrowProjectileAtTarget(enemyTarget);
+            throwingController.ThrowProjectileAtTarget(enemyTarget, this.transform);
         }
     }
 
