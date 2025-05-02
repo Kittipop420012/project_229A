@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class ScoreManagerP2 : MonoBehaviour
 {
     public static ScoreManagerP2 Instance;
@@ -16,6 +17,8 @@ public class ScoreManagerP2 : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
+        GameData.scoreP2 = score; // เก็บลง GameData
         scoreText.text = "Player 2: " + score;
     }
 }
+

@@ -28,10 +28,19 @@ public class TimerCountdown : MonoBehaviour
                 timerText.color = Color.white;
             }
         }
-        else
-        {
-            timerText.text = "0:00";
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+            else
+{
+        timerText.text = "0:00";
+
+    // เปรียบเทียบคะแนน
+    if (GameData.scoreP1 > GameData.scoreP2)
+        GameData.winnerName = "Player 1";
+    else if (GameData.scoreP2 > GameData.scoreP1)
+        GameData.winnerName = "Player 2";
+    else
+        GameData.winnerName = "No one";
+
+    SceneManager.LoadScene("VictoryScene");
+}
     }
 }
